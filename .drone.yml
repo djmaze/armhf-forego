@@ -1,0 +1,23 @@
+matrix:
+  TAG:
+    - v0.16.1
+
+clone:
+  path: github.com/ddollar
+  recursive: true
+
+build:
+  image: armhfbuild/golang:1.5
+  environment:
+    - CGO_ENABLED=0
+  commands:
+    - git clone --single-branch --branch $$TAG https://github.com/ddollar/forego
+    - cd forego
+    - go build
+
+publish:
+  github_release:
+    api_key: $$GITHUB_API_KEY
+    files:
+      - forego/forego
+    checksum: sha1
