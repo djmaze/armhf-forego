@@ -21,3 +21,8 @@ publish:
     files:
       - forego/forego
     checksum: sha1
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK_URL
+    channel: armhf
